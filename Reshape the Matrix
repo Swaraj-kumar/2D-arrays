@@ -1,0 +1,36 @@
+// Check if the number of elements in the original matrix is equal to the product of r and c. If not, then the original matrix is returned.
+// Initialize a new matrix with r rows and c columns.
+// Initialize the row and column indices to 0.
+// Iterate through the original matrix:
+// Add the current element to the new matrix in the correct row and column.
+// Increment the column index.
+// If the column index is equal to c, then reset it to 0 and increment the row index.
+// Return the new matrix.
+
+
+
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int m = mat.size();
+        int n = mat[0].size();
+        vector<vector<int>> newMat(r, vector<int> (c));
+        if (m * n != r * c) {
+            return mat;
+        }
+        
+        int row = 0;
+        int col = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                newMat[row][col++] = mat[i][j];
+
+                if(col == c){
+                    row++;
+                    col = 0;
+                }
+            }
+        }
+        return newMat;
+    }
+};
